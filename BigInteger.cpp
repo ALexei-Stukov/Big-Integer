@@ -79,4 +79,18 @@ class BigInteger {
     bool operator==(const BigInteger &bigInteger) const {
         return !(*this < bigInteger) && !(bigInteger < *this); // a等于b等价于a既不大于b也不小于b
     }
+
+    BigInteger operator+(const BigInteger &bigInteger) const {
+        BigInteger result;
+        for (int i = 0, carry = 0; carry || i < segments || i < bigInteger.segments; i++) {
+            if (i < segments)
+                carry += integer[i];
+            if (i < bigInteger.segments)
+                carry += bigInteger.integer[i];
+            result.integer.emplace_back(carry % base);
+            result.segments++;
+            carry = carry / base;
+        }
+        return result;
+    }
 };
