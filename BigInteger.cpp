@@ -49,4 +49,34 @@ class BigInteger {
         *this = num;
         return in;
     }
+
+    bool operator<(const BigInteger &bigInteger) const {
+        if (segments != bigInteger.segments)
+            return segments < bigInteger.segments;
+        for (int i = segments - 1; i >= 0; i--) { // 倒着比较，因为低位在vector的前面，先比较高位
+            if (integer[i] != bigInteger.integer[i])
+                return integer[i] < bigInteger.integer[i];
+        }
+        return false; // 相等
+    }
+
+    bool operator>(const BigInteger &bigInteger) const {
+        return bigInteger < *this; // a大于b等价于b小于a
+    }
+
+    bool operator<=(const BigInteger &bigInteger) const {
+        return !(bigInteger < *this); // a<=b等价于b不小于a
+    }
+
+    bool operator>=(const BigInteger &bigInteger) const {
+        return !(*this < bigInteger); // a>=b等价于a不小于b
+    }
+
+    bool operator!=(const BigInteger &bigInteger) const {
+        return *this < bigInteger || bigInteger < *this; // a不等于b等价于a大于b或者小于b
+    }
+
+    bool operator==(const BigInteger &bigInteger) const {
+        return !(*this < bigInteger) && !(bigInteger < *this); // a等于b等价于a既不大于b也不小于b
+    }
 };
