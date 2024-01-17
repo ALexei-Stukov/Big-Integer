@@ -1,8 +1,10 @@
 #include<iostream>
 #include<vector>
 #include"BigInteger.h"
+
 using namespace std;
 
+// 1111222233334444 integer[1]=11112222 integer[0]=33334444
 class BigInteger {
     const int width = 8; // 切分段的长度
     const int base = 1e8; // 切分段的数量级
@@ -18,19 +20,33 @@ class BigInteger {
         return *this;
     }
 
-    BigInteger operator=(const string &num) {
+    BigInteger operator=(const string &num) { // 重载赋值运算符，从字符串类型转大整数存储
         integer.clear();
-        int length=num.size();
-        segments = (length- 1) / width + 1; // 这里计算段数的方法十分巧妙
-        for(int i=0;i<segments;i++){
-            int end=length-i*width; // 计算每段结束的地方，从最后一段开始
-            int start=max(0,end-width); // 计算每段开始的地方
-            integer.emplace_back(stoi(num.substr(start,end -start))); // 字符串转整数
+        int length = num.size();
+        segments = (length - 1) / width + 1; // 这里计算段数的方法十分巧妙
+        for (int i = 0; i < segments; i++) {
+            int end = length - i * width; // 计算每段结束的地方，从最后一段开始
+            int start = max(0, end - width); // 计算每段开始的地方
+            integer.emplace_back(stoi(num.substr(start, end - start))); // 字符串转整数
         }
         return *this;
     }
 
     explicit BigInteger(long long num = 0) {
         *this = num;
+    }
+
+    ostream &operator<<(ostream &out) { // 重载输出运算符，vector倒着输出
+        for (auto it = integer.rbegin(); it != integer.rend(); it++) {
+            cout << *it;
+        }
+        return out;
+    }
+
+    istream &operator>>(istream &in) { // 重载输入运算符，当成字符串输入，用重载的赋值运算符直接赋值
+        string num;
+        in >> num;
+        *this = num;
+        return in;
     }
 };
