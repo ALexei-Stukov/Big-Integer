@@ -49,12 +49,6 @@ cmake_ninja_workdir = C$:/Users/Yezi/Desktop/C++/Test/cmake-build-debug/
 
 build cmake_object_order_depends_target_Test: phony || CMakeFiles/Test.dir
 
-build CMakeFiles/Test.dir/main.cpp.obj: CXX_COMPILER__Test_Debug C$:/Users/Yezi/Desktop/C++/Test/main.cpp || cmake_object_order_depends_target_Test
-  DEP_FILE = CMakeFiles\Test.dir\main.cpp.obj.d
-  FLAGS = -O3 -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\Test.dir
-  OBJECT_FILE_DIR = CMakeFiles\Test.dir
-
 build CMakeFiles/Test.dir/BigInteger.cpp.obj: CXX_COMPILER__Test_Debug C$:/Users/Yezi/Desktop/C++/Test/BigInteger.cpp || cmake_object_order_depends_target_Test
   DEP_FILE = CMakeFiles\Test.dir\BigInteger.cpp.obj.d
   FLAGS = -O3 -g -std=gnu++14
@@ -69,7 +63,7 @@ build CMakeFiles/Test.dir/BigInteger.cpp.obj: CXX_COMPILER__Test_Debug C$:/Users
 #############################################
 # Link the executable Test.exe
 
-build Test.exe: CXX_EXECUTABLE_LINKER__Test_Debug CMakeFiles/Test.dir/main.cpp.obj CMakeFiles/Test.dir/BigInteger.cpp.obj
+build Test.exe: CXX_EXECUTABLE_LINKER__Test_Debug CMakeFiles/Test.dir/BigInteger.cpp.obj
   FLAGS = -O3 -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Test.dir

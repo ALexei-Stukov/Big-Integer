@@ -3,4 +3,4 @@ project(Test)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Test main.cpp BigInteger.cpp)
+add_executable(Test BigInteger.cpp)
